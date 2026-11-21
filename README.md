@@ -1,61 +1,77 @@
 # Payroll Management System (C)
 
-A modular, console-based **academic payroll management system** implemented in C (`C11`) for university coursework. Designed to practice structured programming, modular architecture, and file-based persistence—**intended strictly for educational use, not production deployment**.
+A console-based **academic payroll management project** developed in C for university coursework. This is a learning project, **not production-ready payroll software**.
 
-> **Academic & Security Notice:** This project is an academic learning exercise. Some inputs lack strict length bounds, and local credential files are stored in plaintext. Never use real employee records, personal identifiers, or sensitive financial data.
+## Features
 
----
+- Admin and employee login menus
+- Employee record management (add, view, search, update and delete)
+- Attendance and leave management
+- Salary records, salary slips, history, reports and statistics
+- Employee loans and repayment-related functionality
+- Dashboard summaries, notices and activity logging
+- File-based data persistence
 
-## Key Features
+## Technologies and Concepts
 
-- **Authentication & Role Menus:** Admin and employee login flows with local credential setup (`data/admin.txt` or environment variable).
-- **Employee Management (`employee`):** Add, view, search, update, and delete employee records.
-- **Attendance & Leave (`attendance`, `leave`):** Track attendance and manage employee leave workflows.
-- **Payroll & Compensation (`salary`, `loan`):** Manage salary records, generate salary slips, view history, analyze reports/statistics, and handle employee loans and repayments.
-- **Workspace & Auditing (`dashboard`, `notice`, `activity`):** View summary dashboards, publish notices, and record system activity logs.
-- **File-Based Persistence:** Stores local runtime data under `data/` using relative paths.
-
----
-
-## Core Concepts & Stack
-
-- **Language & Standard:** C (`C11`) with standard C library headers
-- **Architecture:** Modular separation of interface (`.h`) and implementation (`.c`) files with shared utilities (`utils`)
-- **Data & Logic:** `struct` definitions, pointers, dynamic/linked structures, file I/O, and interactive CLI menus
-- **Build Tooling:** `gcc` (compatible with Linux/macOS shells and Windows terminals)
-
----
+- C programming language and standard C libraries
+- Modular `.c` and `.h` files
+- Structures, pointers and linked data structures
+- File handling and console menus
 
 ## Project Structure
 
 ```text
 Payroll-Management-System/
-├── include/            # Module header files (*.h)
-│   ├── activity.h
-│   ├── attendance.h
-│   ├── dashboard.h
-│   ├── employee.h
-│   ├── leave.h
-│   ├── login.h
-│   ├── loan.h
-│   ├── notice.h
-│   ├── report.h
-│   ├── salary.h
-│   └── utils.h
-├── src/                # Module source implementations (*.c)
-│   ├── main.c
-│   ├── activity.c
-│   ├── attendance.c
-│   ├── dashboard.c
-│   ├── employee.c
-│   ├── leave.c
-│   ├── login.c
-│   ├── loan.c
-│   ├── notice.c
-│   ├── report.c
-│   ├── salary.c
-│   └── utils.c
-├── data/               # Runtime data directory (ignored in Git)
-│   └── .gitkeep
+├── src/          # C source files
+├── include/      # Header files
+├── data/         # Local runtime data (not committed)
 ├── .gitignore
 └── README.md
+```
+
+## Build and Run
+
+Install GCC and open a terminal in the repository root.
+
+```bash
+gcc -std=c11 -Iinclude src/*.c -o payroll
+./payroll
+```
+
+On Windows, run `./payroll.exe` in a compatible terminal. Run from the repository root because the application uses relative paths under `data/`.
+
+## First-Run Administrator Setup
+
+This public version does not contain a hard-coded default administrator password. Set a local demo password (4–29 characters) before running.
+
+**Windows PowerShell:**
+
+```powershell
+$env:PAYROLL_ADMIN_PASSWORD = "choose-a-unique-demo-password"
+.\payroll.exe
+```
+
+**Linux/macOS:**
+
+```bash
+export PAYROLL_ADMIN_PASSWORD='choose-a-unique-demo-password'
+./payroll
+```
+
+Default administrator username: `admin`. If a local `data/admin.txt` exists, its credentials take precedence over the environment variable.
+
+## Security and Limitations
+
+**For educational use only.** Employee passwords and locally changed administrator passwords are still stored in plaintext. Some input paths lack length limits. Do not use real employee records, credentials or sensitive payroll data. Authentication, validation and data protection require improvement before real-world use.
+
+## Future Improvements
+
+- Implement secure password hashing
+- Improve input validation and error handling
+- Add automated tests
+- Introduce database storage and role-based access control
+
+## Project Context
+
+Created as a university academic project to practice C programming and modular software development.
